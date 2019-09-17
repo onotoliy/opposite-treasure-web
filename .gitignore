@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea/
+
+/gradlew
+/gradlew.bat
+/.gradle
+/build
+/gradle
+/static

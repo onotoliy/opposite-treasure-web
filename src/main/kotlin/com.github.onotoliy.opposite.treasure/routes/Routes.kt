@@ -13,6 +13,13 @@ interface ParamsProps : RProps {
 }
 
 fun RBuilder.routes(scope: CoroutineScope) = switch {
+    // Profile
+    route<RProps>(RoutePath.PROFILE_PAGE, exact = true) { props ->
+        profilePageContainer {
+            attrs.scope = scope
+            attrs.history = props.history
+        }
+    }
     // Deposits
     route<RProps>(RoutePath.DEPOSIT_PAGE, exact = true) { props ->
         depositsPageContainer {

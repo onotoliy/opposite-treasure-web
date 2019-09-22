@@ -8,17 +8,19 @@ import react.redux.rConnect
 import react.router.dom.RouteResultHistory
 import com.github.onotoliy.opposite.treasure.store.reducers.State
 
-interface TransactionsPageContainerProps : RProps {
+interface ProfilePageContainerProps : RProps {
     var scope: CoroutineScope
     var history: RouteResultHistory
 }
 
-val transactionsPageContainer: RClass<TransactionsPageContainerProps> =
-        rConnect<State, TransactionsPageContainerProps, TransactionsPageProps>(
+val profilePageContainer: RClass<ProfilePageContainerProps> =
+        rConnect<State, ProfilePageContainerProps, ProfilePageProps>(
                 { state, ownProps ->
                     scope = ownProps.scope
+                    user = state.users.currentUser
+                    deposit = state.deposits.deposit
+                    debts = state.events.debts
+                    cashbox = state.cashbox.cashbox
                     transactions = state.transactions.transactions
-                    events = state.events.listEvents
-                    persons = state.users.listUsers
                 }
-        )(TransactionsPage::class.js.unsafeCast<RClass<TransactionsPageProps>>())
+        )(ProfilePage::class.js.unsafeCast<RClass<ProfilePageProps>>())

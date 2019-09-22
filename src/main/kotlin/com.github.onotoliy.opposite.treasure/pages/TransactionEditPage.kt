@@ -15,6 +15,7 @@ import com.github.onotoliy.opposite.treasure.utils.Funcs.createUUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import react.*
+import react.router.dom.RouteResultHistory
 
 class TransactionEditorState : RState {
     var name: String = ""
@@ -26,6 +27,7 @@ class TransactionEditorState : RState {
 
 interface TransactionEditPageProps : RProps {
     var scope: CoroutineScope
+    var history: RouteResultHistory
     var uuid: String
     var transaction: Transaction
     var author: Option
@@ -150,6 +152,8 @@ class TransactionEditPage : RComponent<TransactionEditPageProps, TransactionEdit
             } else {
                 TransactionsApi.update(event)
             }
+
+            props.history.push(RoutePath.TRANSACTION_PAGE + event.uuid)
         }
     }
 }

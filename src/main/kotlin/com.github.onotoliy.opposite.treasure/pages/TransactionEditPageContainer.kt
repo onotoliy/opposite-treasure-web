@@ -18,6 +18,7 @@ val transactionEditPageContainer: RClass<TransactionEditPageContainerProps> =
         rConnect<State, TransactionEditPageContainerProps, TransactionEditPageProps>(
                 { state, ownProps ->
                     scope = ownProps.scope
+                    history = ownProps.history
                     uuid = ownProps.uuid
                     transaction = state.transactions.transaction
                     author = state.users.currentUser

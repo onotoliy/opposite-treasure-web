@@ -1,5 +1,5 @@
 {
-  "realm": "agrodigital",
+  "realm": "nr",
   "auth-server-url": "https://sso.playa.ru/auth",
   "ssl-required": "external",
   "resource": "frontend",

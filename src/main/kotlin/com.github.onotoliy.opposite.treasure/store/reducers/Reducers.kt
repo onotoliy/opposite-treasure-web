@@ -9,7 +9,8 @@ data class State(
     val transactions: TransactionsReducer = TransactionsReducer(),
     val deposits: DepositsReducer = DepositsReducer(),
     val users: UsersReducer = UsersReducer(),
-    val system: SystemReducer = SystemReducer()
+    val system: SystemReducer = SystemReducer(),
+    val cashbox: CashboxReducer = CashboxReducer()
 )
 
 fun combinedReducers() = combineReducers<State, RAction>(
@@ -17,6 +18,7 @@ fun combinedReducers() = combineReducers<State, RAction>(
                 "transactions" to ::transactions,
                 "events" to ::events,
                 "deposits" to ::deposits,
+                "cashbox" to ::cashbox,
                 "users" to ::users,
                 "system" to ::system
         )

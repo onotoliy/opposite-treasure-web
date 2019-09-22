@@ -21,6 +21,7 @@ import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.deposits.DepositsService
 import com.github.onotoliy.opposite.treasure.services.deposits.EventsService
 import com.github.onotoliy.opposite.treasure.services.deposits.TransactionsService
+import com.github.onotoliy.opposite.treasure.utils.toReadableDateString
 
 interface DepositViewPageProps : RProps {
     var scope: CoroutineScope
@@ -83,7 +84,7 @@ class DepositViewPage : RComponent<DepositViewPageProps, RState>() {
                                 +(contribution.cash)
                             }
                             mTableCell {
-                                +(contribution.creationDate)
+                                +(contribution.creationDate.toReadableDateString())
                             }
                         }
                     }
@@ -119,7 +120,7 @@ class DepositViewPage : RComponent<DepositViewPageProps, RState>() {
                                 +(debt.contribution)
                             }
                             mTableCell {
-                                +(debt.deadline)
+                                +(debt.deadline.toReadableDateString())
                             }
                         }
                     }

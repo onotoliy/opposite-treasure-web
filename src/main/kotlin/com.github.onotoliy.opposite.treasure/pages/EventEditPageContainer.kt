@@ -18,6 +18,7 @@ val eventEditPageContainer: RClass<EventEditPageContainerProps> =
         rConnect<State, EventEditPageContainerProps, EventEditPageProps>(
                 { state, ownProps ->
                     scope = ownProps.scope
+                    history = ownProps.history
                     uuid = ownProps.uuid
                     author = state.users.currentUser
                     event = state.events.event

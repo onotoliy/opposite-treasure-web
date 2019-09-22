@@ -14,8 +14,10 @@ object EventsApi {
     suspend fun getEvent(uuid: String): Event =
             Network.request(Event.serializer(), Network.Method.GET, "$API/$uuid").await()
 
-    suspend fun getEvents(): Page<Event> =
-            Network.request(Page.serializer(Event.serializer()), Network.Method.GET, API).await()
+    suspend fun getEvents(name: String = "", offset: Int = 0, numberOfRows: Int = 10): Page<Event> =
+            Network.request(
+                    Page.serializer(Event.serializer()), Network.Method.GET,
+                    "$API?name=$name&offset=$offset&numberOfRows=$numberOfRows").await()
 
     suspend fun getListEvents(): List<Option> =
             Network.request(Option.serializer().list, Network.Method.GET, "$API/list").await()
@@ -30,5 +32,5 @@ object EventsApi {
             Network.send(Event.serializer(), Network.Method.POST, event, API).await()
 
     suspend fun update(event: Event): Event =
-            Network.send(Event.serializer(), Network.Method.POST, event, API).await()
+            Network.send(Event.serializer(), Network.Method.PUT, event, API).await()
 }

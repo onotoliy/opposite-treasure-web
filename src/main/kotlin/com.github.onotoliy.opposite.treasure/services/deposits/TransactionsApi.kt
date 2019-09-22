@@ -33,5 +33,5 @@ object TransactionsApi {
             Network.send(Transaction.serializer(), Network.Method.POST, transaction, API).await()
 
     suspend fun update(transaction: Transaction): Transaction =
-            Network.send(Transaction.serializer(), Network.Method.POST, transaction, API).await()
+            Network.send(Transaction.serializer(), Network.Method.PUT, transaction, API).await()
 }

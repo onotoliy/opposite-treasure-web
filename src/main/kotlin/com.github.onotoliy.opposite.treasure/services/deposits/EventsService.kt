@@ -13,15 +13,15 @@ object EventsService {
         appStore.dispatch(SetEvent(EventsApi.getEvent(uuid)))
     }
 
-    suspend fun loadEvents(name: String = "") {
-        appStore.dispatch(SetEvents(RequestStatus.SUCCESS, EventsApi.getEvents()))
+    suspend fun loadEvents(name: String = "", offset: Int = 0, numberOfRows: Int = 10) {
+        appStore.dispatch(SetEvents(RequestStatus.SUCCESS, EventsApi.getEvents(name, offset, numberOfRows)))
     }
 
     suspend fun loadListEvents() {
         appStore.dispatch(SetListEvents(RequestStatus.SUCCESS, EventsApi.getListEvents()))
     }
 
-    suspend fun loadDebts(person: String) {
+    suspend fun loadDebts(person: String, offset: Int = 0, numberOfRows: Int = 10) {
         appStore.dispatch(SetDebts(RequestStatus.SUCCESS, EventsApi.getDebts(person = person)))
     }
 }

@@ -15,6 +15,9 @@ import com.github.onotoliy.opposite.treasure.services.deposits.EventsApi
 import com.github.onotoliy.opposite.treasure.services.deposits.EventsService
 import com.github.onotoliy.opposite.treasure.utils.Funcs.createUUID
 import com.github.onotoliy.opposite.treasure.utils.getCurrentDate
+import com.github.onotoliy.opposite.treasure.utils.toISO
+import com.github.onotoliy.opposite.treasure.utils.fromISO
+import react.router.dom.RouteResultHistory
 
 class EventEditorState : RState {
     var uuid: String = ""
@@ -26,6 +29,7 @@ class EventEditorState : RState {
 
 interface EventEditPageProps : RProps {
     var scope: CoroutineScope
+    var history: RouteResultHistory
     var uuid: String
     var author: Option
     var event: Event
@@ -45,7 +49,7 @@ class EventEditPage : RComponent<EventEditPageProps, EventEditorState>() {
                     uuid = props.uuid
                     name = props.event.name
                     total = props.event.total
-                    deadline = props.event.deadline
+                    deadline = props.event.deadline.fromISO()
                     contribution = props.event.contribution
                 }
             }) {
@@ -104,13 +108,14 @@ class EventEditPage : RComponent<EventEditPageProps, EventEditorState>() {
                     author = props.author,
                     contribution = state.contribution,
                     total = state.total,
-                    deadline = state.deadline)
+                    deadline = state.deadline.toISO())
 
-            if (props.uuid == "0") {
-                EventsApi.create(event)
-            } else {
-                EventsApi.update(event)
+            when {
+                props.uuid == "0" -> EventsApi.create(event)
+                else -> EventsApi.update(event)
             }
+
+            props.history.push(RoutePath.EVENT_PAGE + event.uuid)
         }
     }
 }

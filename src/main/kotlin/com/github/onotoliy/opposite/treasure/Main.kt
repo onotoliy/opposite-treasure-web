@@ -1,8 +1,9 @@
 package com.github.onotoliy.opposite.treasure
 
-import com.github.onotoliy.kotlinx.materialui.components.app.appContainer
-import com.github.onotoliy.kotlinx.materialui.components.currentTheme
-import com.github.onotoliy.kotlinx.materialui.components.mMuiThemeProvider
+import com.github.onotoliy.opposite.treasure.app.appContainer
+import com.github.onotoliy.kotlinx.components.currentTheme
+import com.github.onotoliy.kotlinx.components.mMuiThemeProvider
+import com.github.onotoliy.kotlinx.keycloak.Auth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import react.RProps
@@ -10,7 +11,6 @@ import react.dom.render
 import react.redux.provider
 import react.router.dom.browserRouter
 import react.router.dom.route
-import ru.playa.kotlinx.keycloak.js.Auth
 import com.github.onotoliy.opposite.treasure.store.appStore
 import kotlin.browser.document
 import kotlin.browser.window
@@ -37,7 +37,6 @@ private class Application : CoroutineScope {
                 }
             }
         }
-        Auth.timeout = 60
         Auth.login()
     }
 }

@@ -1,6 +1,14 @@
 package com.github.onotoliy.opposite.treasure.routes
 
-import com.github.onotoliy.opposite.treasure.pages.*
+import com.github.onotoliy.opposite.treasure.pages.deposit.depositViewPageContainer
+import com.github.onotoliy.opposite.treasure.pages.deposit.depositsPageContainer
+import com.github.onotoliy.opposite.treasure.pages.event.eventEditPageContainer
+import com.github.onotoliy.opposite.treasure.pages.event.eventViewPageContainer
+import com.github.onotoliy.opposite.treasure.pages.event.eventsPageContainer
+import com.github.onotoliy.opposite.treasure.pages.profile.profilePageContainer
+import com.github.onotoliy.opposite.treasure.pages.transaction.transactionEditPageContainer
+import com.github.onotoliy.opposite.treasure.pages.transaction.transactionViewPageContainer
+import com.github.onotoliy.opposite.treasure.pages.transaction.transactionsPageContainer
 import kotlinx.coroutines.CoroutineScope
 import react.RBuilder
 import react.RProps

@@ -2,9 +2,8 @@ package com.github.onotoliy.opposite.treasure.store.actions
 
 import com.github.onotoliy.opposite.data.Deposit
 import com.github.onotoliy.opposite.data.page.Page
-import com.github.onotoliy.opposite.treasure.models.RequestStatus
 import redux.RAction
 
 class SetDeposit(val deposit: Deposit) : RAction
 
-class SetDeposits(val status: RequestStatus, val deposits: Page<Deposit> = Page()) : RAction
+class SetDeposits(val deposits: Page<Deposit> = Page()) : RAction

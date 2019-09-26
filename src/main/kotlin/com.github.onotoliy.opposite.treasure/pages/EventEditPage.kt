@@ -2,21 +2,20 @@ package com.github.onotoliy.opposite.treasure.pages
 
 import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.data.Option
-import com.github.onotoliy.opposite.treasure.components.buttonLink
-import com.github.onotoliy.opposite.treasure.components.styled.shadowContainer
 import com.github.onotoliy.opposite.treasure.components.*
 import com.github.onotoliy.opposite.treasure.components.form.mFormControl
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.html.InputType
-import react.*
+import com.github.onotoliy.opposite.treasure.components.styled.shadowContainer
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.deposits.EventsApi
 import com.github.onotoliy.opposite.treasure.services.deposits.EventsService
 import com.github.onotoliy.opposite.treasure.utils.Funcs.createUUID
+import com.github.onotoliy.opposite.treasure.utils.fromISO
 import com.github.onotoliy.opposite.treasure.utils.getCurrentDate
 import com.github.onotoliy.opposite.treasure.utils.toISO
-import com.github.onotoliy.opposite.treasure.utils.fromISO
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.html.InputType
+import react.*
 import react.router.dom.RouteResultHistory
 
 class EventEditorState : RState {

@@ -2,18 +2,24 @@ package com.github.onotoliy.opposite.treasure.pages
 
 import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.treasure.components.buttonLink
-import com.github.onotoliy.opposite.treasure.components.*
 import com.github.onotoliy.opposite.treasure.components.form.mFormControl
+import com.github.onotoliy.opposite.treasure.components.mTextField
 import com.github.onotoliy.opposite.treasure.components.styled.flexColumn
+import com.github.onotoliy.opposite.treasure.components.styled.flexRow
 import com.github.onotoliy.opposite.treasure.components.table.*
+import com.github.onotoliy.opposite.treasure.components.tablePagination
+import com.github.onotoliy.opposite.treasure.components.targetInputValue
+import com.github.onotoliy.opposite.treasure.models.ReqListResult
+import com.github.onotoliy.opposite.treasure.routes.RoutePath
+import com.github.onotoliy.opposite.treasure.services.deposits.EventsService
+import com.github.onotoliy.opposite.treasure.utils.toReadableDateString
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import com.github.onotoliy.opposite.treasure.models.ReqListResult
+import kotlinx.css.FlexDirection
+import kotlinx.css.flexDirection
 import org.w3c.dom.events.KeyboardEvent
 import react.*
 import react.router.dom.routeLink
-import com.github.onotoliy.opposite.treasure.routes.RoutePath
-import com.github.onotoliy.opposite.treasure.services.deposits.EventsService
 
 interface EventsPageProps : RProps {
     var scope: CoroutineScope
@@ -35,8 +41,10 @@ class EventsPage : RComponent<EventsPageProps, EventsPageState>() {
 
     override fun RBuilder.render() {
         flexColumn {
-            buttonLink(RoutePath.EVENT_PAGE + "0/edit", "Добавить событие")
-
+            flexRow {
+                css.flexDirection = FlexDirection.rowReverse
+                buttonLink(RoutePath.EVENT_PAGE + "0/edit", "Добавить событие")
+            }
             mFormControl {
                 mTextField("Название", value = state.name, fullWidth = true, onKeyDown = ::handleSearchQueryKeyDown, onChange = { e ->
                     val value = e.targetInputValue
@@ -71,7 +79,7 @@ class EventsPage : RComponent<EventsPageProps, EventsPageState>() {
                             +(event.contribution)
                         }
                         mTableCell {
-                            +(event.deadline)
+                            +(event.deadline.toReadableDateString())
                         }
                     }
                 }

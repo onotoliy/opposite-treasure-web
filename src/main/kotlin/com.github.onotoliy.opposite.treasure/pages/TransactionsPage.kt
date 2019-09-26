@@ -15,6 +15,8 @@ import com.github.onotoliy.opposite.treasure.services.deposits.TransactionsServi
 import com.github.onotoliy.opposite.treasure.services.deposits.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.css.FlexDirection
+import kotlinx.css.flexDirection
 import kotlinx.css.pct
 import kotlinx.css.width
 import org.w3c.dom.events.KeyboardEvent
@@ -52,7 +54,10 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
 
     override fun RBuilder.render() {
         flexColumn {
-            buttonLink(RoutePath.TRANSACTION_PAGE + "0/edit", "Добавить транзакцию")
+            flexRow {
+                css.flexDirection = FlexDirection.rowReverse
+                buttonLink(RoutePath.TRANSACTION_PAGE + "0/edit", "Добавить транзакцию")
+            }
 
             flexRow {
 
@@ -135,7 +140,7 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
                 props.transactions.data.mapIndexed { _, transaction ->
                     mTableRow {
                         mTableCell {
-                            +(transaction.type.name)
+                            +(transaction.type.label)
                         }
                         mTableCell {
                             routeLink(RoutePath.TRANSACTION_PAGE + transaction.uuid, className = "router-link") {

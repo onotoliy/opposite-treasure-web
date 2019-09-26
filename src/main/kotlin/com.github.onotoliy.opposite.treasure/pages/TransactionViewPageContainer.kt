@@ -18,6 +18,7 @@ val transactionViewPageContainer: RClass<TransactionViewPageContainerProps> =
         rConnect<State, TransactionViewPageContainerProps, TransactionViewPageProps>(
                 { state, ownProps ->
                     scope = ownProps.scope
+                    history = ownProps.history
                     uuid = ownProps.uuid
                     transaction = state.transactions.transaction
                 }

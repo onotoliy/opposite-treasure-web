@@ -33,7 +33,7 @@ object Network {
                 req.open(method.name, urlFull)
                 req.setRequestHeader("Accept", "application/json")
                 req.setRequestHeader("Content-Type", "application/json")
-//                req.setRequestHeader("Authorization", "Bearer " + Auth.keycloak.token)
+                req.setRequestHeader("Authorization", "Bearer " + Auth.keycloak.token)
 
                 req.onreadystatechange = {
                     if (req.readyState == 4.toShort()) {

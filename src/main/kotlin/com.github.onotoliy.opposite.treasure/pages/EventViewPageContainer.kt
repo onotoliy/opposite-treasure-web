@@ -18,6 +18,7 @@ val eventViewPageContainer: RClass<EventViewPageContainerProps> =
         rConnect<State, EventViewPageContainerProps, EventViewPageProps>(
                 { state, ownProps ->
                     scope = ownProps.scope
+                    history = ownProps.history
                     uuid = ownProps.uuid
                     event = state.events.event
                 }

@@ -53,7 +53,7 @@ compileKotlin2Js {
 }
 
 dependencies {
-    implementation "com.github.onotoliy.opposite:treasure-data-js:1.0.2"
+    implementation "com.github.onotoliy.opposite:treasure-data-js:1.0.3"
     implementation "ru.playa:kotlinx-keycloak-js:$kotlinx_keycloak_js_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"

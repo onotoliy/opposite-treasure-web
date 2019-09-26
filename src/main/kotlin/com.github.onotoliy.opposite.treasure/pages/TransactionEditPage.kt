@@ -73,7 +73,7 @@ class TransactionEditPage : RComponent<TransactionEditPageProps, TransactionEdit
                     }
             ) {
                 TransactionType.values().map { unit ->
-                    mMenuItem(unit.name, value = unit.name, key = unit.name)
+                    mMenuItem(unit.label, value = unit.name, key = unit.name)
                 }
             }
 
@@ -94,7 +94,7 @@ class TransactionEditPage : RComponent<TransactionEditPageProps, TransactionEdit
             mTextFieldSelect(
                     label = "Член клуба",
                     value = state.personUUID,
-                    disabled = state.type == TransactionType.NONE || state.type == TransactionType.COST,
+                    disabled = personDisabled(),
                     onChange = { event ->
                         val value = event.targetValue as String
                         setState {
@@ -128,12 +128,19 @@ class TransactionEditPage : RComponent<TransactionEditPageProps, TransactionEdit
         }
     }
 
+    private fun personDisabled(): Boolean {
+        return when {
+            state.type == TransactionType.NONE || state.type == TransactionType.COST -> true
+            else -> props.uuid != "0"
+        }
+    }
+
     private fun validate(): Boolean {
         if (state.type == TransactionType.NONE || state.name.isEmpty() || state.cash.isEmpty()) {
             return true
         }
 
-        return state.type == TransactionType.CONTRIBUTION && state.personUUID.isEmpty()
+        return state.type != TransactionType.COST && state.personUUID.isEmpty()
     }
 
     private fun save() {

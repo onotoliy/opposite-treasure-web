@@ -7,6 +7,6 @@ object Configuration {
     var config = Config()
 
     suspend fun initConfig() {
-        config = Network.request(Config.serializer(), Network.Method.GET, "onotoliy.json").await()
+        config = Network.get("onotoliy.json", Config.serializer()).await()
     }
 }

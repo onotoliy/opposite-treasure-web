@@ -1,6 +1,6 @@
 package com.github.onotoliy.opposite.treasure.services.transaction
 
-import com.github.onotoliy.kotlinx.services.NewNetwork
+import com.github.onotoliy.kotlinx.services.Network
 import com.github.onotoliy.opposite.data.Transaction
 import com.github.onotoliy.opposite.data.TransactionType
 import com.github.onotoliy.opposite.data.page.Page
@@ -11,7 +11,7 @@ object TransactionsApi {
     private const val API: String = "/api/treasure/v1/transaction"
 
     suspend fun getTransaction(uuid: String): Transaction =
-            NewNetwork.get("$API/$uuid", Transaction.serializer()).await()
+            Network.get("$API/$uuid", Transaction.serializer()).await()
 
     suspend fun getTransactions(
         name: String = "",
@@ -21,16 +21,16 @@ object TransactionsApi {
         offset: Int = 0,
         numberOfRows: Int = 10
     ): Page<Transaction> =
-            NewNetwork.get(
+            Network.get(
                     "$API?name=$name&user=$user&event=$event&type=$type&offset=$offset&numberOfRows=$numberOfRows",
                     Page.serializer(Transaction.serializer())).await()
 
     suspend fun delete(uuid: String) =
-            NewNetwork.delete("$API/$uuid").await()
+            Network.delete("$API/$uuid").await()
 
     suspend fun create(event: Transaction): Transaction =
-            NewNetwork.post(API, event, Transaction.serializer()).await()
+            Network.post(API, event, Transaction.serializer()).await()
 
     suspend fun update(event: Transaction): Transaction =
-            NewNetwork.put(API, event, Transaction.serializer()).await()
+            Network.put(API, event, Transaction.serializer()).await()
 }

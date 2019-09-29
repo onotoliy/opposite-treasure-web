@@ -10,6 +10,7 @@ import com.github.onotoliy.kotlinx.components.styled.flexRow
 import com.github.onotoliy.kotlinx.components.table.*
 import com.github.onotoliy.kotlinx.components.tablePagination
 import com.github.onotoliy.kotlinx.components.targetInputValue
+import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
@@ -41,9 +42,11 @@ class EventsPage : RComponent<EventsPageProps, EventsPageState>() {
 
     override fun RBuilder.render() {
         flexColumn {
-            flexRow {
-                css.flexDirection = FlexDirection.rowReverse
-                buttonLink(RoutePath.EVENT_PAGE + "0/edit", "Добавить событие")
+            if (Auth.isModifier()) {
+                flexRow {
+                    css.flexDirection = FlexDirection.rowReverse
+                    buttonLink(RoutePath.EVENT_PAGE + "0/edit", "Добавить событие")
+                }
             }
             mFormControl {
                 mTextField("Название", value = state.name, fullWidth = true, onKeyDown = ::handleSearchQueryKeyDown, onChange = { e ->

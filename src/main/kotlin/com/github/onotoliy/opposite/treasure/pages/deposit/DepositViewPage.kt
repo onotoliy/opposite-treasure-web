@@ -10,7 +10,6 @@ import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.data.Deposit
 import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.data.Transaction
-import com.github.onotoliy.opposite.data.TransactionType
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.deposit.DepositsService
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
@@ -35,7 +34,7 @@ class DepositViewPage : RComponent<DepositViewPageProps, RState>() {
     override fun componentDidMount() {
         props.scope.launch {
             DepositsService.loadDeposit(person = props.person)
-            TransactionsService.loadTransactions(user = props.person, type = TransactionType.CONTRIBUTION)
+            TransactionsService.loadTransactions(user = props.person)
             EventsService.loadDebts(person = props.person)
         }
     }

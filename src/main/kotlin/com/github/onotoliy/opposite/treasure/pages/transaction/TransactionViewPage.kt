@@ -4,6 +4,8 @@ import com.github.onotoliy.opposite.data.Transaction
 import com.github.onotoliy.kotlinx.components.*
 import com.github.onotoliy.kotlinx.components.styled.flexRow
 import com.github.onotoliy.kotlinx.components.styled.shadowContainer
+import com.github.onotoliy.kotlinx.keycloak.Auth
+import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.treasure.fieldRowLink
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsApi
@@ -35,13 +37,16 @@ class TransactionViewPage : RComponent<TransactionViewPageProps, RState>() {
     override fun RBuilder.render() {
         flexRow {
             css.flexDirection = FlexDirection.rowReverse
-            mButton("Удалить", color = MColor.secondary, onClick = {
-                props.scope.launch {
-                    TransactionsApi.delete(props.uuid)
-                }
-                props.history.push(RoutePath.TRANSACTION_PAGE)
-            })
-            buttonLink(RoutePath.TRANSACTION_PAGE + "${props.uuid}/edit", "Изменить")
+            if (Auth.isModifier()) {
+                mButton("Удалить", color = MColor.secondary, onClick = {
+                    props.scope.launch {
+                        TransactionsApi.delete(props.uuid)
+                        TransactionsService.loadTransactions()
+                    }
+                    props.history.push(RoutePath.TRANSACTION_PAGE)
+                })
+                buttonLink(RoutePath.TRANSACTION_PAGE + "${props.uuid}/edit", "Изменить")
+            }
             buttonLink(RoutePath.TRANSACTION_PAGE, "Назад")
         }
 
@@ -55,7 +60,7 @@ class TransactionViewPage : RComponent<TransactionViewPageProps, RState>() {
                 fieldRowLink("Пользователь", RoutePath.DEPOSIT_PAGE + it.uuid, it.name)
             }
             fieldRow("Сумма", props.transaction.cash)
-            fieldRow("Дата создания", props.transaction.creationDate)
+            fieldRow("Дата создания", props.transaction.creationDate.toSimpleDate())
         }
     }
 }

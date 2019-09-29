@@ -146,7 +146,6 @@ class ProfilePage : RComponent<ProfilePageProps, RState>() {
     private fun loadTransactions(offset: Int? = null, numberOfRows: Int? = null) {
         props.scope.launch {
             TransactionsService.loadTransactions(
-                    type = TransactionType.CONTRIBUTION,
                     user = props.user.uuid,
                     offset = offset ?: props.transactions.meta.start,
                     numberOfRows = numberOfRows ?: props.transactions.meta.size)

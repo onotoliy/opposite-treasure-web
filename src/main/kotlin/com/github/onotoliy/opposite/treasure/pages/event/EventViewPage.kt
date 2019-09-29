@@ -1,13 +1,14 @@
 package com.github.onotoliy.opposite.treasure.pages.event
 
-import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.kotlinx.components.*
 import com.github.onotoliy.kotlinx.components.styled.flexRow
 import com.github.onotoliy.kotlinx.components.styled.shadowContainer
-import com.github.onotoliy.opposite.treasure.routes.RoutePath
-import com.github.onotoliy.opposite.treasure.services.event.EventsService
-import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsApi
+import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.kotlinx.toSimpleDate
+import com.github.onotoliy.opposite.data.Event
+import com.github.onotoliy.opposite.treasure.routes.RoutePath
+import com.github.onotoliy.opposite.treasure.services.event.EventsApi
+import com.github.onotoliy.opposite.treasure.services.event.EventsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.FlexDirection
@@ -35,13 +36,16 @@ class EventViewPage : RComponent<EventViewPageProps, RState>() {
     override fun RBuilder.render() {
         flexRow {
             css.flexDirection = FlexDirection.rowReverse
-            mButton("Удалить", color = MColor.secondary, onClick = {
-                props.scope.launch {
-                    TransactionsApi.delete(props.uuid)
-                }
-                props.history.push(RoutePath.EVENT_PAGE)
-            })
-            buttonLink(RoutePath.EVENT_PAGE + "${props.uuid}/edit", "Изменить")
+            if (Auth.isModifier()) {
+                mButton("Удалить", color = MColor.secondary, onClick = {
+                    props.scope.launch {
+                        EventsApi.delete(props.uuid)
+                        EventsService.loadEvents()
+                    }
+                    props.history.push(RoutePath.EVENT_PAGE)
+                })
+                buttonLink(RoutePath.EVENT_PAGE + "${props.uuid}/edit", "Изменить")
+            }
             buttonLink(RoutePath.EVENT_PAGE, "Назад")
         }
 

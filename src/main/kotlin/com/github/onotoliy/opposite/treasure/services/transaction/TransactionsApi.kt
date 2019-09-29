@@ -1,17 +1,17 @@
 package com.github.onotoliy.opposite.treasure.services.transaction
 
+import com.github.onotoliy.kotlinx.services.NewNetwork
 import com.github.onotoliy.opposite.data.Transaction
 import com.github.onotoliy.opposite.data.TransactionType
 import com.github.onotoliy.opposite.data.page.Page
 import kotlinx.coroutines.await
-import com.github.onotoliy.kotlinx.services.Network
 
 object TransactionsApi {
 
     private const val API: String = "/api/treasure/v1/transaction"
 
     suspend fun getTransaction(uuid: String): Transaction =
-            Network.request(Transaction.serializer(), Network.Method.GET, "$API/$uuid").await()
+            NewNetwork.get("$API/$uuid", Transaction.serializer()).await()
 
     suspend fun getTransactions(
         name: String = "",
@@ -21,17 +21,16 @@ object TransactionsApi {
         offset: Int = 0,
         numberOfRows: Int = 10
     ): Page<Transaction> =
-            Network.request(
-                    Page.serializer(Transaction.serializer()),
-                    Network.Method.GET,
-                    "$API?name=$name&user=$user&event=$event&type=$type&offset=$offset&numberOfRows=$numberOfRows").await()
+            NewNetwork.get(
+                    "$API?name=$name&user=$user&event=$event&type=$type&offset=$offset&numberOfRows=$numberOfRows",
+                    Page.serializer(Transaction.serializer())).await()
 
     suspend fun delete(uuid: String) =
-            Network.request(Transaction.serializer(), Network.Method.DELETE, "$API/$uuid").await()
+            NewNetwork.delete("$API/$uuid").await()
 
-    suspend fun create(transaction: Transaction): Transaction =
-            Network.send(Transaction.serializer(), Network.Method.POST, transaction, API).await()
+    suspend fun create(event: Transaction): Transaction =
+            NewNetwork.post(API, event, Transaction.serializer()).await()
 
-    suspend fun update(transaction: Transaction): Transaction =
-            Network.send(Transaction.serializer(), Network.Method.PUT, transaction, API).await()
+    suspend fun update(event: Transaction): Transaction =
+            NewNetwork.put(API, event, Transaction.serializer()).await()
 }

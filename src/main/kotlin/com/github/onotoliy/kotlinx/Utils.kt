@@ -2,6 +2,7 @@ package com.github.onotoliy.kotlinx
 
 import com.github.onotoliy.opposite.data.page.Page
 import kotlinx.serialization.Serializable
+import kotlin.browser.window
 import kotlin.js.Date
 import kotlin.math.floor
 import kotlin.random.Random
@@ -18,6 +19,10 @@ fun uuid(): String {
     s[18] = '-'
     s[23] = '-'
     return String(s)
+}
+
+fun parseJWT(token: String): Any {
+    return JSON.parse(window.atob(token.split('.')[1]))
 }
 
 fun now(): String = Date().toISOString().substring(0, 10)

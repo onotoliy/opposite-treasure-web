@@ -9,6 +9,8 @@ import com.github.onotoliy.kotlinx.components.form.mFormControl
 import com.github.onotoliy.kotlinx.components.styled.flexColumn
 import com.github.onotoliy.kotlinx.components.styled.flexRow
 import com.github.onotoliy.kotlinx.components.table.*
+import com.github.onotoliy.kotlinx.keycloak.Auth
+import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
 import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsService
@@ -54,9 +56,11 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
 
     override fun RBuilder.render() {
         flexColumn {
-            flexRow {
-                css.flexDirection = FlexDirection.rowReverse
-                buttonLink(RoutePath.TRANSACTION_PAGE + "0/edit", "Добавить транзакцию")
+            if (Auth.isModifier()) {
+                flexRow {
+                    css.flexDirection = FlexDirection.rowReverse
+                    buttonLink(RoutePath.TRANSACTION_PAGE + "0/edit", "Добавить транзакцию")
+                }
             }
 
             flexRow {
@@ -161,7 +165,7 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
                             +(transaction.cash)
                         }
                         mTableCell {
-                            +(transaction.creationDate)
+                            +(transaction.creationDate.toSimpleDate())
                         }
                     }
                 }

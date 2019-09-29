@@ -1,5 +1,6 @@
 package com.github.onotoliy.opposite.treasure.services.event
 
+import com.github.onotoliy.opposite.treasure.services.debts.DebtsApi
 import com.github.onotoliy.opposite.treasure.store.actions.SetDebts
 import com.github.onotoliy.opposite.treasure.store.actions.SetEvent
 import com.github.onotoliy.opposite.treasure.store.actions.SetEvents
@@ -21,6 +22,6 @@ object EventsService {
     }
 
     suspend fun loadDebts(person: String, offset: Int = 0, numberOfRows: Int = 10) {
-        appStore.dispatch(SetDebts(EventsApi.getDebts(person = person)))
+        appStore.dispatch(SetDebts(DebtsApi.getDebts(person = person)))
     }
 }

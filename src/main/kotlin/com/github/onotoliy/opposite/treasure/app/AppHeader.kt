@@ -1,8 +1,7 @@
 package com.github.onotoliy.opposite.treasure.app
 
-import com.github.onotoliy.kotlinx.components.mAppBar
-import com.github.onotoliy.kotlinx.components.svg.svgLogoAgrodigital
 import com.github.onotoliy.kotlinx.components.*
+import com.github.onotoliy.kotlinx.components.svg.svgLogoOpposite
 import kotlinext.js.JsObject
 import kotlinx.css.*
 import react.RBuilder
@@ -13,7 +12,7 @@ fun RBuilder.appHeader(accountName: String, logout: () -> Unit) = mAppBar(MColor
     mToolbar {
         styledDiv {
             css.flexGrow = 1.0
-            svgLogoAgrodigital()
+            svgLogoOpposite()
         }
         styledDiv {
             css.marginRight = 50.px

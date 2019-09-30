@@ -22,7 +22,7 @@ object Network {
             }
 
     fun delete(url: String) =
-            request(url, "DELETE") { json: String, resolve: (Unit) -> Unit, _: (Throwable) -> Unit ->
+            request(url, "DELETE") { _: String, resolve: (Unit) -> Unit, _: (Throwable) -> Unit ->
                 resolve(Unit)
             }
 

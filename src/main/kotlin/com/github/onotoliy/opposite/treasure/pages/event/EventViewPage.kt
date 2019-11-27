@@ -9,7 +9,6 @@ import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsApi
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
-import com.github.onotoliy.opposite.treasure.services.user.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.FlexDirection

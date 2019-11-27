@@ -14,7 +14,6 @@ import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
-import com.github.onotoliy.opposite.treasure.services.user.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.FlexDirection

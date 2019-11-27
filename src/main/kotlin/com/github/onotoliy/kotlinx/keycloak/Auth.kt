@@ -47,7 +47,6 @@ object Auth {
     }
 
     fun isModifier(roles: List<String>): Boolean {
-        return roles.any { r1 -> arrayOf("treasurer", "president", "vice-president").any { r2 -> r1 === r2} }
+        return roles.any { r1 -> arrayOf("treasurer", "president", "vice-president").any { r2 -> r1 === r2 } }
     }
-
 }

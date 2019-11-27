@@ -38,6 +38,7 @@ interface TransactionsPageProps : RProps {
     var transactions: ReqListResult<Transaction>
     var events: List<Option>
     var persons: List<Option>
+    var roles: List<String>
 }
 
 class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState>() {
@@ -56,7 +57,7 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
 
     override fun RBuilder.render() {
         flexColumn {
-            if (Auth.isModifier()) {
+            if (Auth.isModifier(props.roles)) {
                 flexRow {
                     css.flexDirection = FlexDirection.rowReverse
                     buttonLink(RoutePath.TRANSACTION_PAGE + "0/edit", "Добавить транзакцию")

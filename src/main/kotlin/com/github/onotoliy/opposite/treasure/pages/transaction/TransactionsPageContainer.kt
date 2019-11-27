@@ -20,5 +20,6 @@ val transactionsPageContainer: RClass<TransactionsPageContainerProps> =
                     transactions = state.transactions.transactions
                     events = state.events.listEvents
                     persons = state.users.listUsers
+                    roles = state.users.currentRoles
                 }
         )(TransactionsPage::class.js.unsafeCast<RClass<TransactionsPageProps>>())

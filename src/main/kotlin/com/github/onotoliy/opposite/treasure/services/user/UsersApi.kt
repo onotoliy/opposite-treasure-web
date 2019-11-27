@@ -4,6 +4,7 @@ import com.github.onotoliy.kotlinx.services.Network
 import com.github.onotoliy.opposite.data.Option
 import kotlinx.coroutines.await
 import kotlinx.serialization.list
+import kotlinx.serialization.serializer
 
 object UsersApi {
 
@@ -11,6 +12,9 @@ object UsersApi {
 
     suspend fun getCurrentUser(): Option =
             Network.get("$API/current", Option.serializer()).await()
+
+    suspend fun getCurrentRoles(): List<String> =
+            Network.get("$API/current/roles", String.serializer().list).await()
 
     suspend fun getUser(uuid: String): Option =
             Network.get("$API/$uuid", Option.serializer()).await()

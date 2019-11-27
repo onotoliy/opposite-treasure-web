@@ -9,6 +9,7 @@ import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsApi
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
+import com.github.onotoliy.opposite.treasure.services.user.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.FlexDirection
@@ -24,6 +25,7 @@ interface EventViewPageProps : RProps {
     var history: RouteResultHistory
     var uuid: String
     var event: Event
+    var roles: List<String>
 }
 
 class EventViewPage : RComponent<EventViewPageProps, RState>() {
@@ -36,7 +38,7 @@ class EventViewPage : RComponent<EventViewPageProps, RState>() {
     override fun RBuilder.render() {
         flexRow {
             css.flexDirection = FlexDirection.rowReverse
-            if (Auth.isModifier()) {
+            if (Auth.isModifier(props.roles)) {
                 mButton("Удалить", color = MColor.secondary, onClick = {
                     props.scope.launch {
                         EventsApi.delete(props.uuid)

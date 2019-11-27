@@ -60,6 +60,8 @@ object Network {
                 req.setRequestHeader("Content-Type", "application/json")
                 req.setRequestHeader("Authorization", "Bearer " + Auth.keycloak.token)
 
+                console.log(Configuration.config.apiBase + url)
+
                 req.onreadystatechange = {
                     if (req.readyState == 4.toShort()) {
                         when (req.status) {

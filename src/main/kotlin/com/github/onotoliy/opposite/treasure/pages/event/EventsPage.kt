@@ -14,6 +14,7 @@ import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
+import com.github.onotoliy.opposite.treasure.services.user.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.FlexDirection
@@ -25,6 +26,7 @@ import react.router.dom.routeLink
 interface EventsPageProps : RProps {
     var scope: CoroutineScope
     var events: ReqListResult<Event>
+    var roles: List<String>
 }
 
 class EventsPageState : RState {
@@ -42,7 +44,7 @@ class EventsPage : RComponent<EventsPageProps, EventsPageState>() {
 
     override fun RBuilder.render() {
         flexColumn {
-            if (Auth.isModifier()) {
+            if (Auth.isModifier(props.roles)) {
                 flexRow {
                     css.flexDirection = FlexDirection.rowReverse
                     buttonLink(RoutePath.EVENT_PAGE + "0/edit", "Добавить событие")

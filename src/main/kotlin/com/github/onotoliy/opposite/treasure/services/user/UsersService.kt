@@ -1,5 +1,6 @@
 package com.github.onotoliy.opposite.treasure.services.user
 
+import com.github.onotoliy.opposite.treasure.store.actions.SetCurrentRoles
 import com.github.onotoliy.opposite.treasure.store.actions.SetCurrentUser
 import com.github.onotoliy.opposite.treasure.store.actions.SetListUsers
 import com.github.onotoliy.opposite.treasure.store.actions.SetUser
@@ -13,6 +14,10 @@ object UsersService {
 
     suspend fun loadCurrentUser() {
         appStore.dispatch(SetCurrentUser(UsersApi.getCurrentUser()))
+    }
+
+    suspend fun loadCurrentRoles() {
+        appStore.dispatch(SetCurrentRoles(UsersApi.getCurrentRoles()))
     }
 
     suspend fun loadListUsers() {

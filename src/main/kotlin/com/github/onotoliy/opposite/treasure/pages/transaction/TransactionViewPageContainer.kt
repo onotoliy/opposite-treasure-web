@@ -21,5 +21,6 @@ val transactionViewPageContainer: RClass<TransactionViewPageContainerProps> =
                     history = ownProps.history
                     uuid = ownProps.uuid
                     transaction = state.transactions.transaction
+                    roles = state.users.currentRoles
                 }
         )(TransactionViewPage::class.js.unsafeCast<RClass<TransactionViewPageProps>>())

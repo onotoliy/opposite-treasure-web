@@ -21,5 +21,6 @@ val eventViewPageContainer: RClass<EventViewPageContainerProps> =
                     history = ownProps.history
                     uuid = ownProps.uuid
                     event = state.events.event
+                    roles = state.users.currentRoles
                 }
         )(EventViewPage::class.js.unsafeCast<RClass<EventViewPageProps>>())

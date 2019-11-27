@@ -25,6 +25,7 @@ interface TransactionViewPageProps : RProps {
     var history: RouteResultHistory
     var uuid: String
     var transaction: Transaction
+    var roles: List<String>
 }
 
 class TransactionViewPage : RComponent<TransactionViewPageProps, RState>() {
@@ -37,7 +38,7 @@ class TransactionViewPage : RComponent<TransactionViewPageProps, RState>() {
     override fun RBuilder.render() {
         flexRow {
             css.flexDirection = FlexDirection.rowReverse
-            if (Auth.isModifier()) {
+            if (Auth.isModifier(props.roles)) {
                 mButton("Удалить", color = MColor.secondary, onClick = {
                     props.scope.launch {
                         TransactionsApi.delete(props.uuid)

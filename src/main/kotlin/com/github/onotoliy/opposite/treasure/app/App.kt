@@ -28,6 +28,7 @@ class App(props: AppProps) : RComponent<AppProps, RState>(props) {
         props.scope.launch {
             Configuration.initConfig()
             UsersService.loadCurrentUser()
+            UsersService.loadCurrentRoles()
         }
     }
 

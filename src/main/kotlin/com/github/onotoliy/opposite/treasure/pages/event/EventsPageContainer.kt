@@ -18,5 +18,6 @@ val eventsPageContainer: RClass<EventsPageContainerProps> =
                 { state, ownProps ->
                     scope = ownProps.scope
                     events = state.events.events
+                    roles = state.users.currentRoles
                 }
         )(EventsPage::class.js.unsafeCast<RClass<EventsPageProps>>())

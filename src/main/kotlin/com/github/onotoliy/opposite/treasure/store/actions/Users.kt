@@ -7,4 +7,6 @@ class SetCurrentUser(val currentUser: Option) : RAction
 
 class SetUser(val user: Option) : RAction
 
+class SetCurrentRoles(val currentRoles: List<String>) : RAction
+
 class SetListUsers(val listUsers: List<Option> = emptyList()) : RAction

@@ -37,7 +37,8 @@ class App(props: AppProps) : RComponent<AppProps, RState>(props) {
         Auth.logout()
     }
 
-    private val accountName = props.currentUser.name
+    private val accountName
+        get() = props.currentUser.name
 
     override fun RBuilder.render() {
         styledDiv {

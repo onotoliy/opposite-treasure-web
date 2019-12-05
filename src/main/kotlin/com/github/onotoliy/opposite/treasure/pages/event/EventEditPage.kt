@@ -1,20 +1,26 @@
 package com.github.onotoliy.opposite.treasure.pages.event
 
-import com.github.onotoliy.kotlinx.components.*
+import com.github.onotoliy.kotlinx.fromISO
+import com.github.onotoliy.kotlinx.materialui.*
+import com.github.onotoliy.kotlinx.materialui.button.mButtonGroup
+import com.github.onotoliy.kotlinx.materialui.design.button.adButton
+import com.github.onotoliy.kotlinx.materialui.design.shadowWrapper
+import com.github.onotoliy.kotlinx.materialui.form.mFormControl
+import com.github.onotoliy.kotlinx.now
+import com.github.onotoliy.kotlinx.services.Configuration
+import com.github.onotoliy.kotlinx.toISO
+import com.github.onotoliy.kotlinx.uuid
 import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.data.Option
-import com.github.onotoliy.kotlinx.components.form.mFormControl
-import com.github.onotoliy.kotlinx.components.styled.shadowContainer
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsApi
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
-import com.github.onotoliy.kotlinx.fromISO
-import com.github.onotoliy.kotlinx.now
-import com.github.onotoliy.kotlinx.toISO
-import com.github.onotoliy.kotlinx.uuid
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.css.marginRight
+import kotlinx.css.px
 import kotlinx.html.InputType
+import kotlinx.html.js.onClickFunction
 import react.*
 import react.router.dom.RouteResultHistory
 
@@ -40,7 +46,7 @@ class EventEditPage : RComponent<EventEditPageProps, EventEditorState>() {
     }
 
     override fun componentDidMount() {
-        props.scope.launch {
+        Configuration.scope.launch {
             setState(state.apply {
                 if (props.uuid != "0") {
                     EventsService.loadEvent(uuid = props.uuid)
@@ -57,7 +63,7 @@ class EventEditPage : RComponent<EventEditPageProps, EventEditorState>() {
     }
 
     override fun RBuilder.render() {
-        shadowContainer {
+        shadowWrapper {
             mTypography("Мероприятие", MTypographyVariant.h6)
 
             mFormControl {
@@ -86,12 +92,17 @@ class EventEditPage : RComponent<EventEditPageProps, EventEditorState>() {
             }
         }
 
-        mButton(caption = "Сохранить", primary = true, onClick = { save() }, disabled = validate(), variant = MButtonVariant.contained)
+        shadowWrapper {
+            mButtonGroup {
+                adButton(label = "Сохранить", disabled = validate(), width = "150px") {
+                    css.marginRight = 15.px
+                    attrs.onClickFunction = {
+                        save()
+                    }
+                }
 
-        if (props.uuid == "0") {
-            buttonLink(RoutePath.EVENT_PAGE, "Назад")
-        } else {
-            buttonLink(RoutePath.EVENT_PAGE + props.uuid, "Назад")
+                buttonLink(if (props.uuid == "0") RoutePath.EVENT_PAGE else RoutePath.EVENT_PAGE + props.uuid, "Назад")
+            }
         }
     }
 
@@ -100,7 +111,7 @@ class EventEditPage : RComponent<EventEditPageProps, EventEditorState>() {
     }
 
     private fun save() {
-        props.scope.launch {
+        Configuration.scope.launch {
             val event = Event(
                     uuid = if (props.uuid == "0") uuid() else props.uuid,
                     name = state.name,

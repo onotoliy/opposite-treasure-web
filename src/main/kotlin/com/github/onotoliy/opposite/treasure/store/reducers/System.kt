@@ -1,8 +1,8 @@
 package com.github.onotoliy.opposite.treasure.store.reducers
 
-import redux.RAction
 import com.github.onotoliy.opposite.treasure.store.actions.SetAlert
 import com.github.onotoliy.opposite.treasure.store.actions.SetLoading
+import redux.RAction
 
 data class SystemReducer(
     // количество текущих загрузок

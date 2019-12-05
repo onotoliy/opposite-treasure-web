@@ -1,11 +1,11 @@
 package com.github.onotoliy.opposite.treasure.store.reducers
 
 import com.github.onotoliy.kotlinx.ReqListResult
+import com.github.onotoliy.kotlinx.toReqListResult
 import com.github.onotoliy.opposite.data.Transaction
-import redux.RAction
 import com.github.onotoliy.opposite.treasure.store.actions.SetTransaction
 import com.github.onotoliy.opposite.treasure.store.actions.SetTransactions
-import com.github.onotoliy.kotlinx.toReqListResult
+import redux.RAction
 
 data class TransactionsReducer(
     val transaction: Transaction = Transaction(),

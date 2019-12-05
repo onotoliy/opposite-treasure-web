@@ -3,11 +3,11 @@ package com.github.onotoliy.kotlinx.services
 import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.opposite.data.core.ExceptionInformation
 import com.github.onotoliy.opposite.treasure.services.system.SystemService
+import kotlin.js.Promise
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import org.w3c.xhr.XMLHttpRequest
-import kotlin.js.Promise
 
 object Network {
 

@@ -1,13 +1,21 @@
 package com.github.onotoliy.opposite.treasure.pages.profile
 
 import com.github.onotoliy.kotlinx.ReqListResult
+import com.github.onotoliy.kotlinx.materialui.MTypographyVariant
+import com.github.onotoliy.kotlinx.materialui.design.shadowWrapper
+import com.github.onotoliy.kotlinx.materialui.fieldRow
+import com.github.onotoliy.kotlinx.materialui.mTypography
+import com.github.onotoliy.kotlinx.materialui.table.*
+import com.github.onotoliy.kotlinx.materialui.tablePagination
+import com.github.onotoliy.kotlinx.services.Configuration
+import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.data.*
-import com.github.onotoliy.kotlinx.components.MTypographyVariant
-import com.github.onotoliy.kotlinx.components.fieldRow
-import com.github.onotoliy.kotlinx.components.mTypography
-import com.github.onotoliy.kotlinx.components.styled.shadowContainer
-import com.github.onotoliy.kotlinx.components.table.*
-import com.github.onotoliy.kotlinx.components.tablePagination
+import com.github.onotoliy.opposite.treasure.routes.RoutePath
+import com.github.onotoliy.opposite.treasure.services.cashbox.CashboxService
+import com.github.onotoliy.opposite.treasure.services.deposit.*
+import com.github.onotoliy.opposite.treasure.services.event.EventsService
+import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsService
+import com.github.onotoliy.opposite.treasure.services.user.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import react.RBuilder
@@ -15,13 +23,6 @@ import react.RComponent
 import react.RProps
 import react.RState
 import react.router.dom.routeLink
-import com.github.onotoliy.opposite.treasure.routes.RoutePath
-import com.github.onotoliy.opposite.treasure.services.deposit.*
-import com.github.onotoliy.kotlinx.toSimpleDate
-import com.github.onotoliy.opposite.treasure.services.cashbox.CashboxService
-import com.github.onotoliy.opposite.treasure.services.event.EventsService
-import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsService
-import com.github.onotoliy.opposite.treasure.services.user.UsersService
 
 interface ProfilePageProps : RProps {
     var scope: CoroutineScope
@@ -34,7 +35,7 @@ interface ProfilePageProps : RProps {
 
 class ProfilePage : RComponent<ProfilePageProps, RState>() {
     override fun componentDidMount() {
-        props.scope.launch {
+        Configuration.scope.launch {
             UsersService.loadCurrentUser()
             DepositsService.loadDeposit(props.user.uuid)
             CashboxService.loadCasbox()
@@ -45,19 +46,19 @@ class ProfilePage : RComponent<ProfilePageProps, RState>() {
     }
 
     override fun RBuilder.render() {
-        shadowContainer {
+        shadowWrapper {
             mTypography("Касса", MTypographyVariant.h6)
             fieldRow("Сумма", props.cashbox.deposit)
             fieldRow("Дата изменения", props.cashbox.lastUpdateDate.toSimpleDate())
         }
 
-        shadowContainer {
+        shadowWrapper {
             mTypography("Мой депозит", MTypographyVariant.h6)
             fieldRow("Сумма", props.deposit.deposit)
         }
 
         if (props.transactions.meta.total > 0) {
-            shadowContainer {
+            shadowWrapper {
                 mTypography("Мои платежи", MTypographyVariant.h6)
                 mTable {
                     mTableHead {
@@ -104,7 +105,7 @@ class ProfilePage : RComponent<ProfilePageProps, RState>() {
         }
 
         if (props.debts.meta.total > 0) {
-            shadowContainer {
+            shadowWrapper {
                 mTypography("Мои долги", MTypographyVariant.h6)
                 mTable {
                     mTableHead {
@@ -144,7 +145,7 @@ class ProfilePage : RComponent<ProfilePageProps, RState>() {
     }
 
     private fun loadTransactions(offset: Int? = null, numberOfRows: Int? = null) {
-        props.scope.launch {
+        Configuration.scope.launch {
             TransactionsService.loadTransactions(
                     user = props.user.uuid,
                     offset = offset ?: props.transactions.meta.start,
@@ -153,7 +154,7 @@ class ProfilePage : RComponent<ProfilePageProps, RState>() {
     }
 
     private fun loadDebts(offset: Int? = null, numberOfRows: Int? = null) {
-        props.scope.launch {
+        Configuration.scope.launch {
             EventsService.loadDebts(
                     person = props.user.uuid,
                     offset = offset ?: props.debts.meta.start,

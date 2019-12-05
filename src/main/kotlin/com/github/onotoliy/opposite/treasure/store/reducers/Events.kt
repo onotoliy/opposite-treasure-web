@@ -1,14 +1,14 @@
 package com.github.onotoliy.opposite.treasure.store.reducers
 
 import com.github.onotoliy.kotlinx.ReqListResult
+import com.github.onotoliy.kotlinx.toReqListResult
 import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.data.Option
-import redux.RAction
 import com.github.onotoliy.opposite.treasure.store.actions.SetDebts
 import com.github.onotoliy.opposite.treasure.store.actions.SetEvent
 import com.github.onotoliy.opposite.treasure.store.actions.SetEvents
 import com.github.onotoliy.opposite.treasure.store.actions.SetListEvents
-import com.github.onotoliy.kotlinx.toReqListResult
+import redux.RAction
 
 data class EventsReducer(
     val event: Event = Event(),

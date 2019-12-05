@@ -1,12 +1,12 @@
 package com.github.onotoliy.opposite.treasure.pages.deposit
 
+import com.github.onotoliy.opposite.treasure.store.reducers.State
 import kotlinx.coroutines.CoroutineScope
 import react.RClass
 import react.RProps
 import react.invoke
 import react.redux.rConnect
 import react.router.dom.RouteResultHistory
-import com.github.onotoliy.opposite.treasure.store.reducers.State
 
 interface DepositViewPageContainerProps : RProps {
     var scope: CoroutineScope

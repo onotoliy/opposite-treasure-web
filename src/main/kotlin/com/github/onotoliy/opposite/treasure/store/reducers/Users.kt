@@ -2,10 +2,10 @@ package com.github.onotoliy.opposite.treasure.store.reducers
 
 import com.github.onotoliy.opposite.data.Option
 import com.github.onotoliy.opposite.treasure.store.actions.SetCurrentRoles
-import redux.RAction
 import com.github.onotoliy.opposite.treasure.store.actions.SetCurrentUser
 import com.github.onotoliy.opposite.treasure.store.actions.SetListUsers
 import com.github.onotoliy.opposite.treasure.store.actions.SetUser
+import redux.RAction
 
 data class UsersReducer(
     val user: Option = Option(),

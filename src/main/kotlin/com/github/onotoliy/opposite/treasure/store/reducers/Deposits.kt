@@ -1,11 +1,11 @@
 package com.github.onotoliy.opposite.treasure.store.reducers
 
 import com.github.onotoliy.kotlinx.ReqListResult
+import com.github.onotoliy.kotlinx.toReqListResult
 import com.github.onotoliy.opposite.data.Deposit
 import com.github.onotoliy.opposite.treasure.store.actions.SetDeposit
 import com.github.onotoliy.opposite.treasure.store.actions.SetDeposits
 import redux.RAction
-import com.github.onotoliy.kotlinx.toReqListResult
 
 data class DepositsReducer(
     val deposit: Deposit = Deposit(),

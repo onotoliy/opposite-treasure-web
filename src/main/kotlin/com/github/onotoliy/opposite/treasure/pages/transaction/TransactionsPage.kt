@@ -1,30 +1,39 @@
 package com.github.onotoliy.opposite.treasure.pages.transaction
 
 import com.github.onotoliy.kotlinx.ReqListResult
+import com.github.onotoliy.kotlinx.keycloak.Auth
+import com.github.onotoliy.kotlinx.materialui.buttonLink
+import com.github.onotoliy.kotlinx.materialui.design.ADColor
+import com.github.onotoliy.kotlinx.materialui.design.button.ADButtonType
+import com.github.onotoliy.kotlinx.materialui.design.button.adButtonAdd
+import com.github.onotoliy.kotlinx.materialui.design.flexColumn
+import com.github.onotoliy.kotlinx.materialui.design.flexRow
+import com.github.onotoliy.kotlinx.materialui.form.mFormControl
+import com.github.onotoliy.kotlinx.materialui.mTextField
+import com.github.onotoliy.kotlinx.materialui.mTextFieldSelect
+import com.github.onotoliy.kotlinx.materialui.menu.mMenuItem
+import com.github.onotoliy.kotlinx.materialui.table.*
+import com.github.onotoliy.kotlinx.materialui.tablePagination
+import com.github.onotoliy.kotlinx.materialui.targetInputValue
+import com.github.onotoliy.kotlinx.materialui.targetValue
+import com.github.onotoliy.kotlinx.services.Configuration
+import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.data.Option
 import com.github.onotoliy.opposite.data.Transaction
 import com.github.onotoliy.opposite.data.TransactionType
-import com.github.onotoliy.kotlinx.components.*
-import com.github.onotoliy.kotlinx.components.form.mFormControl
-import com.github.onotoliy.kotlinx.components.styled.flexColumn
-import com.github.onotoliy.kotlinx.components.styled.flexRow
-import com.github.onotoliy.kotlinx.components.table.*
-import com.github.onotoliy.kotlinx.keycloak.Auth
-import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
 import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsService
 import com.github.onotoliy.opposite.treasure.services.user.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.css.FlexDirection
-import kotlinx.css.flexDirection
-import kotlinx.css.pct
-import kotlinx.css.width
+import kotlinx.css.*
+import kotlinx.html.js.onClickFunction
 import org.w3c.dom.events.KeyboardEvent
 import react.*
 import react.router.dom.routeLink
 import styled.css
+import kotlin.browser.window
 
 class TransactionsPageState : RState {
     var name: String = ""
@@ -47,7 +56,7 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
     }
 
     override fun componentDidMount() {
-        props.scope.launch {
+        Configuration.scope.launch {
             UsersService.loadListUsers()
             EventsService.loadListEvents()
         }
@@ -60,7 +69,11 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
             if (Auth.isModifier(props.roles)) {
                 flexRow {
                     css.flexDirection = FlexDirection.rowReverse
-                    buttonLink(RoutePath.TRANSACTION_PAGE + "0/edit", "Добавить транзакцию")
+                    buttonLink(
+                            to = RoutePath.TRANSACTION_PAGE + "0/edit",
+                            label = "Добавить транзакцию",
+                            width = "250px",
+                            type = ADButtonType.Apple)
                 }
             }
 
@@ -183,7 +196,7 @@ class TransactionsPage : RComponent<TransactionsPageProps, TransactionsPageState
     }
 
     private fun loadTransactions(offset: Int? = null, numberOfRows: Int? = null) {
-        props.scope.launch {
+        Configuration.scope.launch {
             TransactionsService.loadTransactions(
                     type = state.type,
                     name = state.name,

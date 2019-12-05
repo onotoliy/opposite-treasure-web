@@ -1,11 +1,12 @@
 package com.github.onotoliy.opposite.treasure.pages.deposit
 
 import com.github.onotoliy.kotlinx.ReqListResult
-import com.github.onotoliy.kotlinx.components.MTypographyVariant
-import com.github.onotoliy.kotlinx.components.fieldRow
-import com.github.onotoliy.kotlinx.components.mTypography
-import com.github.onotoliy.kotlinx.components.styled.shadowContainer
-import com.github.onotoliy.kotlinx.components.table.*
+import com.github.onotoliy.kotlinx.materialui.MTypographyVariant
+import com.github.onotoliy.kotlinx.materialui.design.shadowWrapper
+import com.github.onotoliy.kotlinx.materialui.fieldRow
+import com.github.onotoliy.kotlinx.materialui.mTypography
+import com.github.onotoliy.kotlinx.materialui.table.*
+import com.github.onotoliy.kotlinx.services.Configuration
 import com.github.onotoliy.kotlinx.toSimpleDate
 import com.github.onotoliy.opposite.data.Deposit
 import com.github.onotoliy.opposite.data.Event
@@ -32,7 +33,7 @@ interface DepositViewPageProps : RProps {
 
 class DepositViewPage : RComponent<DepositViewPageProps, RState>() {
     override fun componentDidMount() {
-        props.scope.launch {
+        Configuration.scope.launch {
             DepositsService.loadDeposit(person = props.person)
             TransactionsService.loadTransactions(user = props.person)
             EventsService.loadDebts(person = props.person)
@@ -40,13 +41,13 @@ class DepositViewPage : RComponent<DepositViewPageProps, RState>() {
     }
 
     override fun RBuilder.render() {
-        shadowContainer {
+        shadowWrapper {
             mTypography("Депозит", MTypographyVariant.h6)
             fieldRow("Пользователь", props.deposit.person.name)
             fieldRow("Депозин", props.deposit.deposit)
         }
 
-        shadowContainer {
+        shadowWrapper {
             mTypography("Платежи", MTypographyVariant.h6)
 
             mTable {
@@ -91,7 +92,7 @@ class DepositViewPage : RComponent<DepositViewPageProps, RState>() {
             }
         }
 
-        shadowContainer {
+        shadowWrapper {
             mTypography("Долги", MTypographyVariant.h6)
             mTable {
                 mTableHead {

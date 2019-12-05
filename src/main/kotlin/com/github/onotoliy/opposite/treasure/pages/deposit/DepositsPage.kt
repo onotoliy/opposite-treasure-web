@@ -1,7 +1,8 @@
 package com.github.onotoliy.opposite.treasure.pages.deposit
 
 import com.github.onotoliy.kotlinx.ReqListResult
-import com.github.onotoliy.kotlinx.components.table.*
+import com.github.onotoliy.kotlinx.materialui.table.*
+import com.github.onotoliy.kotlinx.services.Configuration
 import com.github.onotoliy.opposite.data.Deposit
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.deposit.DepositsService
@@ -20,7 +21,7 @@ interface DepositsPageProps : RProps {
 
 class DepositsPage : RComponent<DepositsPageProps, RState>() {
     override fun componentDidMount() {
-        props.scope.launch { DepositsService.loadDeposits() }
+        Configuration.scope.launch { DepositsService.loadDeposits() }
     }
 
     override fun RBuilder.render() {

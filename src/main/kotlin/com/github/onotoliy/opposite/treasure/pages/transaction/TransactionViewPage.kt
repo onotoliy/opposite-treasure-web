@@ -5,7 +5,6 @@ import com.github.onotoliy.kotlinx.materialui.*
 import com.github.onotoliy.kotlinx.materialui.button.mButtonGroup
 import com.github.onotoliy.kotlinx.materialui.design.button.adButtonDelete
 import com.github.onotoliy.kotlinx.materialui.design.shadowWrapper
-import com.github.onotoliy.kotlinx.materialui.design.svg.adIconArrowRight
 import com.github.onotoliy.kotlinx.materialui.design.svg.adIconEdit
 import com.github.onotoliy.kotlinx.materialui.design.svg.adIconSmallBackArrow
 import com.github.onotoliy.kotlinx.services.Configuration

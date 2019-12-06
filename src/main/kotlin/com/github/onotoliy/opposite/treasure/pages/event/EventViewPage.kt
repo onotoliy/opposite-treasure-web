@@ -2,14 +2,9 @@ package com.github.onotoliy.opposite.treasure.pages.event
 
 import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.kotlinx.materialui.*
-import com.github.onotoliy.kotlinx.materialui.button.mButton
 import com.github.onotoliy.kotlinx.materialui.button.mButtonGroup
-import com.github.onotoliy.kotlinx.materialui.design.button.adButtonBack
 import com.github.onotoliy.kotlinx.materialui.design.button.adButtonDelete
-import com.github.onotoliy.kotlinx.materialui.design.button.adButtonEdit
-import com.github.onotoliy.kotlinx.materialui.design.flexRow
 import com.github.onotoliy.kotlinx.materialui.design.shadowWrapper
-import com.github.onotoliy.kotlinx.materialui.design.svg.adIconArrowRight
 import com.github.onotoliy.kotlinx.materialui.design.svg.adIconEdit
 import com.github.onotoliy.kotlinx.materialui.design.svg.adIconSmallBackArrow
 import com.github.onotoliy.kotlinx.services.Configuration
@@ -18,8 +13,6 @@ import com.github.onotoliy.opposite.data.Event
 import com.github.onotoliy.opposite.treasure.routes.RoutePath
 import com.github.onotoliy.opposite.treasure.services.event.EventsApi
 import com.github.onotoliy.opposite.treasure.services.event.EventsService
-import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsApi
-import com.github.onotoliy.opposite.treasure.services.transaction.TransactionsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.FlexDirection
@@ -30,7 +23,6 @@ import react.RComponent
 import react.RProps
 import react.RState
 import react.router.dom.RouteResultHistory
-import kotlin.browser.window
 
 interface EventViewPageProps : RProps {
     var scope: CoroutineScope

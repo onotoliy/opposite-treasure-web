@@ -17,8 +17,9 @@ fun RBuilder.adButtonAdd(
 }
 
 fun RBuilder.adButtonBack(
-        label: String = "Назад",
-        builder: StyledDOMBuilder<BUTTON>.() -> Unit = {}) {
+    label: String = "Назад",
+    builder: StyledDOMBuilder<BUTTON>.() -> Unit = {}
+) {
     adButtonText(label, color = ADColor.DarkSky, icon = adIconSmallBackArrow, width = "100px") {
         builder()
     }
@@ -31,8 +32,9 @@ fun RBuilder.adButtonCancel(builder: StyledDOMBuilder<BUTTON>.() -> Unit = {}) {
 }
 
 fun RBuilder.adButtonEdit(
-        label: String = "Изменить",
-        builder: StyledDOMBuilder<BUTTON>.() -> Unit = {}) {
+    label: String = "Изменить",
+    builder: StyledDOMBuilder<BUTTON>.() -> Unit = {}
+) {
     adButtonText(label, color = ADColor.FreshApple, icon = adIconEdit, width = "100px") {
         builder()
     }

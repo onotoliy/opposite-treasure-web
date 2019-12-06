@@ -3,9 +3,7 @@ package com.github.onotoliy.opposite.treasure.pages.transaction
 import com.github.onotoliy.kotlinx.ReqListResult
 import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.kotlinx.materialui.buttonLink
-import com.github.onotoliy.kotlinx.materialui.design.ADColor
 import com.github.onotoliy.kotlinx.materialui.design.button.ADButtonType
-import com.github.onotoliy.kotlinx.materialui.design.button.adButtonAdd
 import com.github.onotoliy.kotlinx.materialui.design.flexColumn
 import com.github.onotoliy.kotlinx.materialui.design.flexRow
 import com.github.onotoliy.kotlinx.materialui.form.mFormControl
@@ -28,12 +26,10 @@ import com.github.onotoliy.opposite.treasure.services.user.UsersService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.*
-import kotlinx.html.js.onClickFunction
 import org.w3c.dom.events.KeyboardEvent
 import react.*
 import react.router.dom.routeLink
 import styled.css
-import kotlin.browser.window
 
 class TransactionsPageState : RState {
     var name: String = ""

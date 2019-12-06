@@ -3,7 +3,6 @@ package com.github.onotoliy.opposite.treasure.pages.event
 import com.github.onotoliy.kotlinx.ReqListResult
 import com.github.onotoliy.kotlinx.keycloak.Auth
 import com.github.onotoliy.kotlinx.materialui.buttonLink
-import com.github.onotoliy.kotlinx.materialui.design.ADColor
 import com.github.onotoliy.kotlinx.materialui.design.button.ADButtonType
 import com.github.onotoliy.kotlinx.materialui.design.flexColumn
 import com.github.onotoliy.kotlinx.materialui.design.flexRow
@@ -21,8 +20,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.css.FlexDirection
 import kotlinx.css.flexDirection
-import kotlinx.css.marginTop
-import kotlinx.css.px
 import org.w3c.dom.events.KeyboardEvent
 import react.*
 import react.router.dom.routeLink

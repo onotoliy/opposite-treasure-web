@@ -12,6 +12,6 @@ object DepositsApi {
     suspend fun getDeposit(person: String): Deposit =
             Network.get("$API/$person", Deposit.serializer()).await()
 
-    suspend fun getDeposits(): Page<Deposit> =
-            Network.get(API, Page.serializer(Deposit.serializer())).await()
+    suspend fun getDeposits(offset: Int = 0, numberOfRows: Int = 20): Page<Deposit> =
+            Network.get("$API?offset=$offset&numberOfRows=$numberOfRows", Page.serializer(Deposit.serializer())).await()
 }

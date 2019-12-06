@@ -83,12 +83,7 @@ kotlinFrontend {
         dependency("inline-style-prefixer")
         dependency("styled-components")
         dependency("@material-ui/core", materialui_version)
-        dependency("react-google-maps")
-        dependency("antd", antd_version)
         dependency("moment", moment_version)
-        dependency("highcharts", highcharts_version)
-        dependency("highcharts-react-official", highcharts_react_version)
-        dependency("react-number-format", react_number_format_version)
         dependency("@svgr/webpack", "4.3.3")
     }
 
@@ -107,7 +102,7 @@ kotlinFrontend {
 
 task serverPrepare(type: Copy, dependsOn: ['bundle']) {
     doFirst { delete "$projectDir/static" }
-    from "$projectDir/build/bundle", "$projectDir/src/main/web"
+    from "$projectDir/build/bundle", "$projectDir/src/main/resources"
     into "$projectDir/static"
 }
 

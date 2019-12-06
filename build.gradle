@@ -2,6 +2,15 @@ buildscript {
     ext {
         kotlin_version = '1.3.50'
         kotlin_for_react_version = 'pre.83-kotlin-1.3.50'
+
+        materialui_version = "4.3.3"
+        react_number_format_version = "4.2.0"
+        antd_version = "3.20.0"
+        kotlin_antd_version = "pre.9-kotlin-1.3.40"
+        moment_version = "2.24.0"
+        kotlin_moment_version = "pre.4-kotlin-1.3.40"
+        highcharts_version = "7.1.2"
+        highcharts_react_version = "2.2.2"
     }
     repositories {
         jcenter()
@@ -73,8 +82,14 @@ kotlinFrontend {
         dependency("redux")
         dependency("inline-style-prefixer")
         dependency("styled-components")
-        dependency("@material-ui/core")
+        dependency("@material-ui/core", materialui_version)
         dependency("react-google-maps")
+        dependency("antd", antd_version)
+        dependency("moment", moment_version)
+        dependency("highcharts", highcharts_version)
+        dependency("highcharts-react-official", highcharts_react_version)
+        dependency("react-number-format", react_number_format_version)
+        dependency("@svgr/webpack", "4.3.3")
     }
 
     sourceMaps = false

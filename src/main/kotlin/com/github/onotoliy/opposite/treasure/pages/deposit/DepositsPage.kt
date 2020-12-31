@@ -41,7 +41,7 @@ class DepositsPage : RComponent<DepositsPageProps, RState>() {
                     mTableRow {
                         mTableCell {
                             routeLink(RoutePath.DEPOSIT_PAGE + deposit.uuid, className = "router-link") {
-                                +deposit.person.name
+                                +deposit.name
                             }
                         }
                         mTableCell {

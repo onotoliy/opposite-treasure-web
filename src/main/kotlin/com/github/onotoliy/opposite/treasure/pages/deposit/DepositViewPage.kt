@@ -43,7 +43,7 @@ class DepositViewPage : RComponent<DepositViewPageProps, RState>() {
     override fun RBuilder.render() {
         shadowWrapper {
             mTypography("Депозит", MTypographyVariant.h6)
-            fieldRow("Пользователь", props.deposit.person.name)
+            fieldRow("Пользователь", props.deposit.name)
             fieldRow("Депозин", props.deposit.deposit)
         }
 
